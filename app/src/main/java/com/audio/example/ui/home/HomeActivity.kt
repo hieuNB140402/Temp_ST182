@@ -22,6 +22,7 @@ import com.audio.example.core.utils.key.RequestKey
 import com.audio.example.core.utils.state.RateState
 import com.audio.example.databinding.ActivityHomeBinding
 import com.audio.example.ui.SettingsActivity
+import com.audio.example.ui.my_record.MyRecordActivity
 import com.audio.example.ui.permission.PermissionViewModel
 import com.audio.example.ui.record.RecordActivity
 import dagger.hilt.android.AndroidEntryPoint
@@ -33,8 +34,6 @@ import kotlin.system.exitProcess
 
 @AndroidEntryPoint
 class HomeActivity : BaseActivity<ActivityHomeBinding>() {
-
-    private val dataViewModel: DataViewModel by viewModels()
     private val permissionViewModel: PermissionViewModel by viewModels()
 
     override fun setViewBinding(): ActivityHomeBinding {
@@ -51,8 +50,9 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>() {
 
     override fun viewListener() {
         binding.apply {
-            actionBar.btnActionBarRight.setOnSingleClickWithSound { startIntentRightToLeft(SettingsActivity::class.java) }
+            btnSettings.setOnSingleClickWithSound { startIntentRightToLeft(SettingsActivity::class.java) }
             btnRecord.setOnSingleClickWithSound { checkRecordAudioPermission() }
+            btnMyRecord.setOnSingleClickWithSound { startIntentRightToLeft(MyRecordActivity::class.java) }
         }
     }
 
@@ -63,8 +63,8 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>() {
 
     override fun initActionBar() {
         binding.actionBar.apply {
-            btnActionBarRight.setImageResource(R.drawable.ic_settings)
-            btnActionBarRight.visible()
+            tvCenter.text = getString(R.string.reverse_voice)
+            tvCenter.visible()
         }
     }
 
@@ -101,29 +101,40 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>() {
 
     private fun updateText() {
         binding.apply {
-//            stvFinger.text = getString(R.string.finger_play)
-//            tvFinger.text = getString(R.string.finger_play)
-//            stvFavorite.text = getString(R.string.favorite)
-//            tvFavorite.text = getString(R.string.favorite)
-//            tvHotViral.text = getString(R.string.hot_viral)
+            actionBar.tvCenter.text = getString(R.string.reverse_voice)
+            tvRecord.text = getString(R.string.record)
+            tvMyRecord.text = getString(R.string.my_record)
+            tvSettings.text = getString(R.string.settings)
         }
     }
 
     private fun checkRecordAudioPermission() {
         if (checkPermissions(permissionViewModel.getRecordAudioPermissions())) {
             startRecordActivity()
-        } else if (permissionViewModel.needGoToSettings(sharePreference, PermissionKey.RECORD_AUDIO_KEY)) {
+        } else if (permissionViewModel.needGoToSettings(
+                sharePreference,
+                PermissionKey.RECORD_AUDIO_KEY
+            )
+        ) {
             goToSettings()
         } else {
-            requestPermission(permissionViewModel.getRecordAudioPermissions(), RequestKey.RECORD_AUDIO_REQUEST_CODE)
+            requestPermission(
+                permissionViewModel.getRecordAudioPermissions(),
+                RequestKey.RECORD_AUDIO_REQUEST_CODE
+            )
         }
     }
 
     private fun startRecordActivity() = startIntentRightToLeft(RecordActivity::class.java)
 
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<String>,
+        grantResults: IntArray
+    ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        val granted = grantResults.isNotEmpty() && grantResults.all { it == PackageManager.PERMISSION_GRANTED }
+        val granted =
+            grantResults.isNotEmpty() && grantResults.all { it == PackageManager.PERMISSION_GRANTED }
         when (requestCode) {
             RequestKey.RECORD_AUDIO_REQUEST_CODE -> permissionViewModel.updateRecordAudioGranted(
                 sharePreference,

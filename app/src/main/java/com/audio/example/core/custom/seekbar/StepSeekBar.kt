@@ -55,8 +55,10 @@ class StepSeekBar @JvmOverloads constructor(
                 inactiveColor = getColor(R.styleable.StepSeekBar_inactiveColor, inactiveColor)
                 thumbDrawable = getDrawable(R.styleable.StepSeekBar_thumbDrawable)
                 thumbSize = getDimension(R.styleable.StepSeekBar_thumbStepSize, thumbSize)
-                tickActiveSize = getDimension(R.styleable.StepSeekBar_tickActiveSize, tickActiveSize)
-                tickInactiveSize = getDimension(R.styleable.StepSeekBar_tickInactiveSize, tickInactiveSize)
+                tickActiveSize =
+                    getDimension(R.styleable.StepSeekBar_tickActiveSize, tickActiveSize)
+                tickInactiveSize =
+                    getDimension(R.styleable.StepSeekBar_tickInactiveSize, tickInactiveSize)
                 lineHeight = getDimension(R.styleable.StepSeekBar_lineHeight, lineHeight)
             } finally {
                 recycle()

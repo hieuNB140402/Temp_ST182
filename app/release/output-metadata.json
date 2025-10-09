@@ -13,7 +13,7 @@
       "attributes": [],
       "versionCode": 1,
       "versionName": "1.0.0",
-      "outputFile": "ST177_Finger_Play_game1.0.0_09.16.2025-release.apk"
+      "outputFile": "ST182_Reverse Voice Challenge Play_1.0.0_10.10.2025-release.apk"
     }
   ],
   "elementType": "File",
@@ -22,16 +22,16 @@
       "minApi": 28,
       "maxApi": 30,
       "baselineProfiles": [
-        "baselineProfiles/1/ST177_Finger_Play_game1.0.0_09.16.2025-release.dm"
+        "baselineProfiles/1/ST182_Reverse Voice Challenge Play_1.0.0_10.10.2025-release.dm"
       ]
     },
     {
       "minApi": 31,
       "maxApi": 2147483647,
       "baselineProfiles": [
-        "baselineProfiles/0/ST177_Finger_Play_game1.0.0_09.16.2025-release.dm"
+        "baselineProfiles/0/ST182_Reverse Voice Challenge Play_1.0.0_10.10.2025-release.dm"
       ]
     }
   ],
-  "minSdkVersionForDexing": 24
+  "minSdkVersionForDexing": 26
 }

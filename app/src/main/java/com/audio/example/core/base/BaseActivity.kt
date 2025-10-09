@@ -65,7 +65,7 @@ abstract class BaseActivity<T : ViewBinding> : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        hideNavigation()
+        hideNavigation(true)
     }
 
     @SuppressLint("MissingSuperCall", "GestureBackNavigation")

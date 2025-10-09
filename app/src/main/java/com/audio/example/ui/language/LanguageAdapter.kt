@@ -21,7 +21,8 @@ import com.audio.example.databinding.ItemLanguageBinding
 
 class LanguageAdapter(
     private val context: Context
-) : ListAdapter<LanguageModel, LanguageAdapter.LanguageVH>(object : DiffUtil.ItemCallback<LanguageModel>() {
+) : ListAdapter<LanguageModel, LanguageAdapter.LanguageVH>(object :
+    DiffUtil.ItemCallback<LanguageModel>() {
     override fun areItemsTheSame(oldItem: LanguageModel, newItem: LanguageModel): Boolean {
         // So sánh theo mã ngôn ngữ
         return oldItem.code == newItem.code
@@ -46,12 +47,15 @@ class LanguageAdapter(
                 // Hiển thị trạng thái active
                 if (item.activate) {
                     loadImageGlide(root, R.drawable.ic_tick_lang, rdbLang, false)
-                    imvFocus.visible()
-                    tvLang.setFont(R.font.roboto_medium)
+                    tvLang.setTextColor(context.getColor(R.color.white))
+                    layoutBg.setBackgroundResource(R.drawable.bg_10_solid_gradient)
+                    itemLang.cardElevation = 6f
+
                 } else {
                     loadImageGlide(root, R.drawable.ic_not_tick_lang, rdbLang, false)
-                    imvFocus.gone()
-                    tvLang.setFont(R.font.roboto_regular)
+                    tvLang.setTextColor(context.getColor(R.color.black_CC_opacity))
+                    layoutBg.setBackgroundResource(R.drawable.bg_10_stroke_gradient_solid_white)
+                    itemLang.cardElevation = 0f
                 }
 
                 // Xử lý click

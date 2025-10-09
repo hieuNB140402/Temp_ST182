@@ -18,6 +18,7 @@ import androidx.core.net.toUri
 import androidx.lifecycle.lifecycleScope
 import com.audio.example.R
 import com.audio.example.core.base.BaseActivity
+import com.audio.example.core.extensions.handleBackLeftToRight
 import com.audio.example.core.extensions.hideNavigation
 import com.audio.example.core.extensions.setOnSingleClick
 import com.audio.example.core.extensions.shareImagesPaths
@@ -80,7 +81,7 @@ class MyRecordActivity : BaseActivity<ActivityMyRecordBinding>() {
             llLoading.setOnSingleClick{
                 showToast(R.string.please_wait_until_the_download_is_successful, Toast.LENGTH_SHORT)
             }
-            imvBack.setOnSingleClick { finish() }
+            imvBack.setOnSingleClick { handleBackLeftToRight() }
             adapter.onClick = { pos, type ->
                 when (type) {
                     TYPE_PLAY -> {
@@ -245,12 +246,12 @@ class MyRecordActivity : BaseActivity<ActivityMyRecordBinding>() {
             }
             .setNegativeButton(R.string.cancel) { dialog, _ ->
                 dialog.dismiss()
-                hideNavigation()
+                hideNavigation(true)
             }
             .setCancelable(false)
         val alertDialog = builder.create()
         alertDialog.show()
-        hideNavigation()
+        hideNavigation(true)
         val negativeButton =
             alertDialog.getButton(DialogInterface.BUTTON_NEGATIVE)
         val negativeButton2 =

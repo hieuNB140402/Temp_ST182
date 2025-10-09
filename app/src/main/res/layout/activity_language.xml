@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/img_bg_app"
+    android:background="@color/white_FB"
     tools:context=".ui.language.LanguageActivity">
     <!-- layoutActionBar -->
     <FrameLayout
@@ -27,7 +27,7 @@
         android:layout_marginTop="10dp"
         android:orientation="vertical"
         android:overScrollMode="never"
-        android:paddingHorizontal="16dp"
+
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

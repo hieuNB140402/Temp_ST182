@@ -37,6 +37,7 @@ object DataLocal {
         IntroModel(R.drawable.img_intro_3, R.string.title_3)
     )
 
-
+    val speedList = listOf(0.25f, 0.5f, 0.75f, 1.0f, 1.25f, 1.5f, 1.75f, 2.0f)
+    val pitchList = listOf(0.5f, 0.6f, 0.7f, 0.8f, 0.9f, 1f, 1.1f, 1.2f, 1.3f, 1.4f, 1.5f,1.6f)
 
 }

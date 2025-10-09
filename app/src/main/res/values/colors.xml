@@ -13,6 +13,8 @@
     <color name="_555555">#555555</color>
     <color name="_808080">#808080</color>
     <color name="color_app">#6CD0FF</color>
+    <color name="black_CC_opacity">#CC3F3E3F</color>
+    <color name="gray_6C">#6C6C6C</color>
 
 
 </resources>

@@ -33,12 +33,12 @@ fun Activity.goToSettings(settingsDialog: ((ConfirmDialog) -> Unit)? = null, onC
     settingsDialog?.invoke(confirmDialog)
     confirmDialog.onNoClick = {
         confirmDialog.dismiss()
-        hideNavigation()
+        hideNavigation(true)
         onCancelClick?.invoke()
     }
     confirmDialog.onYesClick = {
         confirmDialog.dismiss()
-        hideNavigation()
+        hideNavigation(true)
         val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS).apply {
             data = "package:${this@goToSettings.packageName}".toUri()
         }

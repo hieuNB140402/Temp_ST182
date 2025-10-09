@@ -82,10 +82,18 @@
     <string name="app_settings">App Settings</string>
     <string name="tap_to_record">Tap To Record</string>
     <string name="play">Play</string>
+    <string name="stop">Stop</string>
     <string name="reverse">Reverse</string>
     <string name="record">Record</string>
     <string name="reques_storage">Please grant permission to download the file.</string>
     <string name="please_wait_until_the_download_is_successful">Please wait until the download is successful.</string>
+    <string name="tap_to_stop_record">Tap To Stop Record</string>
+    <string name="an_error_occurred_please_record_again">An error occurred, please record again!</string>
+    <string name="please_stop_recording">Please stop recording!</string>
+    <string name="please_stop_playing_sound">Please stop playing sound!</string>
+    <string name="please_record_the_audio">Please record the audio!</string>
+    <string name="reverse_voice">Reverse Voice</string>
+    <string name="record_audio">Record Audio</string>
 
 
 </resources>

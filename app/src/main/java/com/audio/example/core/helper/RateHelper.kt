@@ -26,7 +26,7 @@ object RateHelper {
             preference.setIsRate(true)
             activity.showToast(R.string.have_rated)
             dialogRate.dismiss()
-            activity.hideNavigation()
+            activity.hideNavigation(true)
             onRateResult(RateState.LESS3)
         }
 
@@ -35,13 +35,13 @@ object RateHelper {
             reviewApp(activity, false)
             activity.showToast(R.string.have_rated)
             dialogRate.dismiss()
-            activity.hideNavigation()
+            activity.hideNavigation(true)
             onRateResult(RateState.GREATER3)
         }
 
         dialogRate.onCancel = {
             dialogRate.dismiss()
-            activity.hideNavigation()
+            activity.hideNavigation(true)
             onRateResult(RateState.CANCEL)
         }
     }

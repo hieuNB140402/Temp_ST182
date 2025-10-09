@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/img_bg_app"
+    android:background="@color/white_FB"
     tools:context=".ui.permission.PermissionActivity">
 
     <!-- layoutActionBar -->
@@ -25,8 +25,7 @@
         android:id="@+id/imgPermission"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="70dp"
-        android:layout_marginBottom="-6dp"
+        android:layout_marginHorizontal="95dp"
         android:adjustViewBounds="true"
         android:src="@drawable/img_permission"
         app:layout_constraintEnd_toEndOf="parent"
@@ -55,7 +54,6 @@
             android:textSize="16sp" />
     </LinearLayout>
 
-
     <!-- scvButton -->
     <ScrollView
         android:layout_width="match_parent"
@@ -72,12 +70,42 @@
             android:layout_marginHorizontal="16dp"
             android:orientation="vertical">
 
+            <!-- btnRecordAudio-->
+            <RelativeLayout
+                android:id="@+id/btnRecordAudio"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_10_stroke_gradient_solid_white">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="16dp"
+                    android:fontFamily="@font/roboto_medium"
+                    android:gravity="start"
+                    android:text="@string/record_audio"
+                    android:textColor="#555555"
+                    android:textSize="14sp" />
+
+                <ImageView
+                    android:id="@+id/swRecordAudio"
+                    android:layout_width="56dp"
+                    android:layout_height="32dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginVertical="10dp"
+                    android:layout_marginEnd="16dp"
+                    android:src="@drawable/ic_sw_off" />
+            </RelativeLayout>
+
             <!-- btnStorage-->
             <RelativeLayout
                 android:id="@+id/btnStorage"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/bg_10_solid_white_opacity_5">
+                android:layout_marginTop="16dp"
+                android:background="@drawable/bg_10_stroke_gradient_solid_white">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -87,16 +115,16 @@
                     android:fontFamily="@font/roboto_medium"
                     android:gravity="start"
                     android:text="@string/storage"
-                    android:textColor="@color/white"
+                    android:textColor="#555555"
                     android:textSize="14sp" />
 
                 <ImageView
                     android:id="@+id/swPermission"
-                    android:layout_width="54dp"
-                    android:layout_height="28dp"
+                    android:layout_width="56dp"
+                    android:layout_height="32dp"
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
-                    android:layout_marginVertical="12dp"
+                    android:layout_marginVertical="10dp"
                     android:layout_marginEnd="16dp"
                     android:src="@drawable/ic_sw_off" />
             </RelativeLayout>
@@ -106,8 +134,8 @@
                 android:id="@+id/btnNotification"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/bg_10_solid_white_opacity_5"
-                android:layout_marginTop="16dp">
+                android:layout_marginTop="16dp"
+                android:background="@drawable/bg_10_stroke_gradient_solid_white">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -117,16 +145,16 @@
                     android:fontFamily="@font/roboto_medium"
                     android:gravity="start"
                     android:text="@string/notification"
-                    android:textColor="@color/white"
+                    android:textColor="#555555"
                     android:textSize="14sp" />
 
                 <ImageView
                     android:id="@+id/swNotification"
-                    android:layout_width="54dp"
-                    android:layout_height="28dp"
+                    android:layout_width="56dp"
+                    android:layout_height="32dp"
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
-                    android:layout_marginVertical="12dp"
+                    android:layout_marginVertical="10dp"
                     android:layout_marginEnd="16dp"
                     android:src="@drawable/ic_sw_off" />
             </RelativeLayout>
@@ -142,13 +170,13 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="12dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="150dp"
+        android:layout_marginBottom="120dp"
         android:fontFamily="@font/roboto_medium"
         android:gravity="center"
         android:text="@string/continue_per"
-        android:textColor="@color/blue_2C"
+        android:textColor="@color/blue_51"
         android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

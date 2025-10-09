@@ -8,23 +8,19 @@
         android:id="@+id/itemLang"
         android:layout_width="match_parent"
         android:layout_height="56dp"
-        android:layout_marginBottom="16dp"
-        app:cardBackgroundColor="#11FFFFFF"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginVertical="8dp"
+        app:cardBackgroundColor="@color/transparent"
         app:cardCornerRadius="10dp"
-        app:cardElevation="0dp"
+        app:cardElevation="4dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <ImageView
-            android:id="@+id/imvFocus"
+        <RelativeLayout
+            android:id="@+id/layoutBg"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:scaleType="fitXY"
-            android:src="@drawable/img_btn_language"/>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:background="@drawable/bg_10_solid_gradient">
 
             <ImageView
                 android:id="@+id/imvFlag"
@@ -45,9 +41,10 @@
                 android:layout_marginStart="16dp"
                 android:layout_toStartOf="@+id/rdbLang"
                 android:layout_toEndOf="@+id/imvFlag"
+                android:fontFamily="@font/roboto_regular"
                 android:gravity="start"
                 android:textColor="@color/white"
-                android:textSize="16sp" />
+                android:textSize="14sp" />
 
             <ImageView
                 android:id="@+id/rdbLang"

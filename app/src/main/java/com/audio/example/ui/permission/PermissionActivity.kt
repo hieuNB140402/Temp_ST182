@@ -24,13 +24,14 @@ import com.audio.example.core.helper.StringHelper
 import com.audio.example.core.utils.key.PermissionKey
 import com.audio.example.core.utils.key.RequestKey
 import com.audio.example.databinding.ActivityPermissionBinding
+import com.audio.example.dialog.ConfirmDialog
 import com.audio.example.ui.home.HomeActivity
 import kotlinx.coroutines.launch
 
 class PermissionActivity : BaseActivity<ActivityPermissionBinding>() {
 
     private val viewModel: PermissionViewModel by viewModels()
-
+    var settingsDialog: ConfirmDialog? = null
     override fun setViewBinding() = ActivityPermissionBinding.inflate(LayoutInflater.from(this))
 
     override fun initView() {
@@ -49,11 +50,11 @@ class PermissionActivity : BaseActivity<ActivityPermissionBinding>() {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) R.string.to_access_13 else R.string.to_access
 
         binding.txtPer.text = TextUtils.concat(
-            createColoredText(R.string.allow, R.color.white),
+            createColoredText(R.string.allow, R.color.gray_6C),
             " ",
-            createColoredText(R.string.app_name, R.color.blue_2C, R.font.roboto_bold),
+            createColoredText(R.string.app_name, R.color.blue_51),
             " ",
-            createColoredText(textRes, R.color.white)
+            createColoredText(textRes, R.color.gray_6C)
         )
     }
 
@@ -64,7 +65,7 @@ class PermissionActivity : BaseActivity<ActivityPermissionBinding>() {
         binding.swNotification.setOnSingleClickWithSound {
             handlePermissionRequest(PermissionKey.NOTIFICATION_KEY)
         }
-        binding.swNotification.setOnSingleClickWithSound {
+        binding.swRecordAudio.setOnSingleClickWithSound {
             handlePermissionRequest(PermissionKey.RECORD_AUDIO_KEY)
         }
         binding.tvContinue.setOnSingleClickWithSound(1500) {
@@ -142,11 +143,20 @@ class PermissionActivity : BaseActivity<ActivityPermissionBinding>() {
         requestCode: Int, permissions: Array<String>, grantResults: IntArray
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        val granted = grantResults.isNotEmpty() && grantResults.all { it == PackageManager.PERMISSION_GRANTED }
+        val granted =
+            grantResults.isNotEmpty() && grantResults.all { it == PackageManager.PERMISSION_GRANTED }
         when (requestCode) {
-            RequestKey.STORAGE_PERMISSION_CODE -> viewModel.updateStorageGranted(sharePreference, granted)
-            RequestKey.NOTIFICATION_PERMISSION_CODE -> viewModel.updateNotificationGranted(sharePreference, granted)
-            RequestKey.RECORD_AUDIO_REQUEST_CODE -> viewModel.updateRecordAudioGranted(sharePreference, granted)
+            RequestKey.STORAGE_PERMISSION_CODE -> viewModel.updateStorageGranted(
+                sharePreference, granted
+            )
+
+            RequestKey.NOTIFICATION_PERMISSION_CODE -> viewModel.updateNotificationGranted(
+                sharePreference, granted
+            )
+
+            RequestKey.RECORD_AUDIO_REQUEST_CODE -> viewModel.updateRecordAudioGranted(
+                sharePreference, granted
+            )
         }
         if (granted) {
             showToast(
@@ -189,7 +199,7 @@ class PermissionActivity : BaseActivity<ActivityPermissionBinding>() {
     private fun createColoredText(
         @androidx.annotation.StringRes textRes: Int,
         @androidx.annotation.ColorRes colorRes: Int,
-        font: Int = R.font.roboto_regular
+        font: Int = R.font.roboto_medium
     ) = StringHelper.changeColor(this, getString(textRes), colorRes, font)
 
     private fun handleContinue() {

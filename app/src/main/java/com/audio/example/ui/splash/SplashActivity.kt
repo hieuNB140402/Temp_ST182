@@ -14,7 +14,6 @@ import com.audio.example.core.utils.state.HandleState
 import com.audio.example.databinding.ActivitySplashBinding
 import com.audio.example.ui.intro.IntroActivity
 import com.audio.example.ui.language.LanguageActivity
-import com.audio.example.ui.home.DataViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
