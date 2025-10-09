@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_16_popup"
+        android:gravity="start"
+        android:orientation="vertical"
+        android:paddingHorizontal="16dp"
+        android:paddingVertical="12dp">
+
+        <!-- mnu_rename -->
+        <LinearLayout
+            android:id="@+id/mnu_rename"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="8dp"
+            android:layout_marginTop="12dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_rename_pop" />
+
+            <TextView
+                android:id="@+id/tvRename"
+                style="@style/single_marquee"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:fontFamily="@font/roboto_medium"
+                android:text="@string/rename"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="120dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="14dp"
+            android:background="#4DFFFFFF" />
+
+        <!-- mnu_download -->
+        <LinearLayout
+            android:id="@+id/mnu_download"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="8dp"
+            android:layout_marginTop="12dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_download_pop" />
+
+            <TextView
+                android:id="@+id/tvDownload"
+                style="@style/single_marquee"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:fontFamily="@font/roboto_medium"
+                android:text="@string/download"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="120dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="14dp"
+            android:background="#4DFFFFFF" />
+
+
+        <!-- mnu_share -->
+        <LinearLayout
+            android:id="@+id/mnu_share"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="8dp"
+            android:layout_marginTop="14dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center_vertical|start">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_share_pop" />
+
+            <TextView
+                android:id="@+id/tvShare"
+                style="@style/single_marquee"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:fontFamily="@font/roboto_medium"
+                android:text="@string/share"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="120dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="14dp"
+            android:background="#4DFFFFFF" />
+
+        <!-- mnu_delete -->
+        <LinearLayout
+            android:id="@+id/mnu_delete"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="8dp"
+            android:layout_marginTop="14dp"
+            android:layout_marginBottom="12dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_delete_pop" />
+
+            <TextView
+                android:id="@+id/tvDelete"
+                style="@style/single_marquee"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:fontFamily="@font/roboto_medium"
+                android:text="@string/delete"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</FrameLayout>
