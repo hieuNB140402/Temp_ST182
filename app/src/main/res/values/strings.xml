@@ -84,6 +84,8 @@
     <string name="play">Play</string>
     <string name="reverse">Reverse</string>
     <string name="record">Record</string>
+    <string name="reques_storage">Please grant permission to download the file.</string>
+    <string name="please_wait_until_the_download_is_successful">Please wait until the download is successful.</string>
 
 
 </resources>
