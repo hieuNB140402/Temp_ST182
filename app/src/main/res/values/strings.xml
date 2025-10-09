@@ -65,6 +65,8 @@
     <string name="no">No</string>
     <string name="yes">Yes</string>
     <string name="rename">Rename</string>
+    <string name="play">Play</string>
+    <string name="reverse">Reverse</string>
 
 
 </resources>
