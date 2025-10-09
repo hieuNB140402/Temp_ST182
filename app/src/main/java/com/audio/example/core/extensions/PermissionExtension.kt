@@ -25,25 +25,44 @@ fun Activity.requestPermission(permissions: Array<String>, requestCode: Int) {
     ActivityCompat.requestPermissions(this, permissions, requestCode)
 }
 
-fun Activity.goToSettings() {
+fun Activity.goToSettings(
+    settingsDialog: ((AlertDialog?) -> Unit)? = null,
+    onCancelClick: (() -> Unit)? = null
+) {
     LanguageHelper.setLocale(this)
-    val dialog =
-        AlertDialog.Builder(this).setTitle(R.string.go_to_setting_title).setMessage(R.string.go_to_setting_message)
-            .setPositiveButton(R.string.settings) { dialog, _ ->
-                val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS).apply {
-                    data = "package:${this@goToSettings.packageName}".toUri()
-                }
-                this.startActivity(intent)
-                dialog.dismiss()
-                hideNavigation()
-            }.setNegativeButton(R.string.cancel) { dialog, _ ->
-                dialog.dismiss()
-                hideNavigation()
-            }.setCancelable(false).create()
 
-    dialog.show()
+    val builder = AlertDialog.Builder(this)
+        .setTitle(R.string.go_to_setting_title)
+        .setMessage(R.string.go_to_setting_message)
+        .setCancelable(false)
+        .setPositiveButton(R.string.settings, null)
+        .setNegativeButton(R.string.cancel, null)
+
+    val dialog = builder.create()
+    dialog.show() // phải show trước khi getButton
+
     val positiveButton: Button = dialog.getButton(AlertDialog.BUTTON_POSITIVE)
     val negativeButton: Button = dialog.getButton(AlertDialog.BUTTON_NEGATIVE)
+
     positiveButton.setTextColor("#2CC3FF".toColorInt())
     negativeButton.setTextColor(getColor(R.color.black))
+
+    // xử lý click sau khi show
+    positiveButton.setOnClickListener {
+        val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS).apply {
+            data = "package:${this@goToSettings.packageName}".toUri()
+        }
+        startActivity(intent)
+        dialog.dismiss()
+        hideNavigation()
+    }
+
+    negativeButton.setOnClickListener {
+        dialog.dismiss()
+        hideNavigation()
+        onCancelClick?.invoke()
+    }
+
+//    settingsDialog?.invoke(dialog)
 }
+

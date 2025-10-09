@@ -18,6 +18,9 @@
     <string name="storage">Storage</string>
     <string name="continue_per">Continue</string>
     <string name="notification">Notification</string>
+    <string name="granted_record_audio">Record Audio permission granted</string>
+    <string name="denied_record_audio">Record Audio permission granted</string>
+
     <string name="granted_notification">Notification permission granted</string>
     <string name="denied_notification">Notification permission denied</string>
     <string name="granted_storage">Storage permission granted</string>
@@ -65,8 +68,6 @@
     <string name="no">No</string>
     <string name="yes">Yes</string>
     <string name="rename">Rename</string>
-    <string name="play">Play</string>
-    <string name="reverse">Reverse</string>
     <string name="my_record">My Record</string>
     <string name="no_record_here">No Record Here</string>
     <string name="download_success">Download Success</string>
@@ -75,6 +76,14 @@
     <string name="file_name_cannot_be_blank">File name cannot be blank</string>
     <string name="rename_successful">Rename successful</string>
     <string name="rename_failed">Rename failed</string>
+    <string name="audio_settings">Audio Settings</string>
+    <string name="playback_speed">Playback Speed</string>
+    <string name="pitch_shift">Pitch Shift</string>
+    <string name="app_settings">App Settings</string>
+    <string name="tap_to_record">Tap To Record</string>
+    <string name="play">Play</string>
+    <string name="reverse">Reverse</string>
+    <string name="record">Record</string>
 
 
 </resources>

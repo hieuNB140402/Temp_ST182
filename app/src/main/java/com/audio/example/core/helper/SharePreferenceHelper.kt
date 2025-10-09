@@ -151,7 +151,7 @@ class SharePreferenceHelper(val context: Context) {
         return preferences.getFloat(PITCH_SHIFT_KEY, 1f)
     }
 
-    fun getPitchShiftAudio(pitchShift: Float) {
+    fun setPitchShiftAudio(pitchShift: Float) {
         val editor = preferences.edit()
         editor.putFloat(PITCH_SHIFT_KEY, pitchShift)
         editor.apply()

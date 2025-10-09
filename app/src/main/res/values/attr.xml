@@ -52,4 +52,19 @@
         <attr name="progressPadding" format="dimension" />
     </declare-styleable>
 
+    <declare-styleable name="StepSeekBar">
+        <attr name="stepCount" format="integer" />
+        <attr name="progress" format="integer" />
+
+        <attr name="activeColor" format="color" />
+        <attr name="inactiveColor" format="color" />
+
+        <attr name="thumbDrawable" format="reference" />
+        <attr name="thumbStepSize" format="dimension" />
+
+        <attr name="tickActiveSize" format="dimension" />
+        <attr name="tickInactiveSize" format="dimension" />
+
+        <attr name="lineHeight" format="dimension" />
+    </declare-styleable>
 </resources>

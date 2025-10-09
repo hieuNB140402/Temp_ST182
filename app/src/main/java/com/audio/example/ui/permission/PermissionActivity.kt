@@ -21,6 +21,7 @@ import com.audio.example.core.extensions.showToast
 import com.audio.example.core.extensions.startIntentRightToLeft
 import com.audio.example.core.extensions.visible
 import com.audio.example.core.helper.StringHelper
+import com.audio.example.core.utils.key.PermissionKey
 import com.audio.example.core.utils.key.RequestKey
 import com.audio.example.databinding.ActivityPermissionBinding
 import com.audio.example.ui.home.HomeActivity
@@ -58,10 +59,13 @@ class PermissionActivity : BaseActivity<ActivityPermissionBinding>() {
 
     override fun viewListener() {
         binding.swPermission.setOnSingleClickWithSound {
-            handlePermissionRequest(isStorage = true)
+            handlePermissionRequest(PermissionKey.STORAGE_KEY)
         }
         binding.swNotification.setOnSingleClickWithSound {
-            handlePermissionRequest(isStorage = false)
+            handlePermissionRequest(PermissionKey.NOTIFICATION_KEY)
+        }
+        binding.swNotification.setOnSingleClickWithSound {
+            handlePermissionRequest(PermissionKey.RECORD_AUDIO_KEY)
         }
         binding.tvContinue.setOnSingleClickWithSound(1500) {
             handleContinue()
@@ -85,15 +89,46 @@ class PermissionActivity : BaseActivity<ActivityPermissionBinding>() {
         }
     }
 
-    private fun handlePermissionRequest(isStorage: Boolean) {
-        val perms = if (isStorage) viewModel.getStoragePermissions() else viewModel.getNotificationPermissions()
+    private fun handlePermissionRequest(permission: String) {
+        val perms = when (permission) {
+            PermissionKey.STORAGE_KEY -> {
+                viewModel.getStoragePermissions()
+            }
+
+            PermissionKey.NOTIFICATION_KEY -> {
+                viewModel.getNotificationPermissions()
+            }
+
+            else -> viewModel.getRecordAudioPermissions()
+        }
         if (checkPermissions(perms)) {
-            showToast(if (isStorage) R.string.granted_storage else R.string.granted_notification)
-        } else if (viewModel.needGoToSettings(sharePreference, isStorage)) {
+            showToast(
+                when (permission) {
+                    PermissionKey.STORAGE_KEY -> {
+                        R.string.granted_storage
+                    }
+
+                    PermissionKey.NOTIFICATION_KEY -> {
+                        R.string.granted_notification
+                    }
+
+                    else -> R.string.granted_record_audio
+                }
+            )
+        } else if (viewModel.needGoToSettings(sharePreference, permission)) {
             goToSettings()
         } else {
-            val requestCode =
-                if (isStorage) RequestKey.STORAGE_PERMISSION_CODE else RequestKey.NOTIFICATION_PERMISSION_CODE
+            val requestCode = when (permission) {
+                PermissionKey.STORAGE_KEY -> {
+                    RequestKey.STORAGE_PERMISSION_CODE
+                }
+
+                PermissionKey.NOTIFICATION_KEY -> {
+                    RequestKey.NOTIFICATION_PERMISSION_CODE
+                }
+
+                else -> RequestKey.RECORD_AUDIO_REQUEST_CODE
+            }
             requestPermission(perms, requestCode)
         }
     }
@@ -110,11 +145,23 @@ class PermissionActivity : BaseActivity<ActivityPermissionBinding>() {
         val granted = grantResults.isNotEmpty() && grantResults.all { it == PackageManager.PERMISSION_GRANTED }
         when (requestCode) {
             RequestKey.STORAGE_PERMISSION_CODE -> viewModel.updateStorageGranted(sharePreference, granted)
-
             RequestKey.NOTIFICATION_PERMISSION_CODE -> viewModel.updateNotificationGranted(sharePreference, granted)
+            RequestKey.RECORD_AUDIO_REQUEST_CODE -> viewModel.updateRecordAudioGranted(sharePreference, granted)
         }
         if (granted) {
-            showToast(if (requestCode == RequestKey.STORAGE_PERMISSION_CODE) R.string.granted_storage else R.string.granted_notification)
+            showToast(
+                when (requestCode) {
+                    RequestKey.STORAGE_PERMISSION_CODE -> {
+                        R.string.granted_storage
+                    }
+
+                    RequestKey.NOTIFICATION_PERMISSION_CODE -> {
+                        R.string.granted_notification
+                    }
+
+                    else -> R.string.granted_record_audio
+                }
+            )
         }
     }
 
@@ -125,6 +172,9 @@ class PermissionActivity : BaseActivity<ActivityPermissionBinding>() {
         )
         viewModel.updateNotificationGranted(
             sharePreference, checkPermissions(viewModel.getNotificationPermissions())
+        )
+        viewModel.updateRecordAudioGranted(
+            sharePreference, checkPermissions(viewModel.getRecordAudioPermissions())
         )
     }
 
