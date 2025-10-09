@@ -51,20 +51,15 @@ object MediaHelper {
     }
 
     // Get file from internal
-    fun getFileInternal(context: Context, album: String, isMusic: Boolean): ArrayList<RecordModel> {
-        val recordList = ArrayList<RecordModel>()
+    fun getFileInternal(context: Context, album: String, isMusic: Boolean): ArrayList<String> {
+        val recordList = ArrayList<String>()
         val targetDir = File(context.filesDir, album)
-
         if (targetDir.exists() && targetDir.isDirectory) {
             targetDir.listFiles()?.filter { if (!isMusic) isImageFile(it) else isMusicFile(it) }
                 ?.sortedByDescending { it.lastModified() }?.forEach { file ->
-                    val duration = getAudioDuration(context, file)
+
                     recordList.add(
-                        RecordModel(
-                            pathInternal = file.absolutePath,
-                            nameFile = file.name,
-                            duration = duration
-                        )
+                        file.absolutePath
                     )
                 }
         }
@@ -79,7 +74,7 @@ object MediaHelper {
     }
 
     fun isMusicFile(file: File): Boolean {
-        val imageExtensions = listOf("mp3")
+        val imageExtensions = listOf("wav")
         val extension = file.extension.lowercase()
         return file.isFile && imageExtensions.contains(extension)
     }
@@ -127,7 +122,7 @@ object MediaHelper {
                 // Android 10+ (API 29+) - Scoped Storage
                 val resolver = context.contentResolver
                 val name = displayName.substringBeforeLast(".")
-                val ext = displayName.substringAfterLast(".", "mp3")
+                val ext = displayName.substringAfterLast(".", "wav")
 
                 // Kiểm tra trùng tên
                 var finalName = displayName
@@ -171,7 +166,7 @@ object MediaHelper {
                 var finalFile = File(appDir, displayName)
                 var index = 1
                 val name = displayName.substringBeforeLast(".")
-                val ext = displayName.substringAfterLast(".", "mp3")
+                val ext = displayName.substringAfterLast(".", "wav")
 
                 while (finalFile.exists()) {
                     finalFile = File(appDir, "$name($index).$ext")

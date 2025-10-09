@@ -148,7 +148,7 @@ class SharePreferenceHelper(val context: Context) {
 
     // pitch shift
     fun getPitchShiftAudio(): Float {
-        return preferences.getFloat(PITCH_SHIFT_KEY, 0f)
+        return preferences.getFloat(PITCH_SHIFT_KEY, 1f)
     }
 
     fun getPitchShiftAudio(pitchShift: Float) {

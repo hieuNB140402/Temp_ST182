@@ -30,7 +30,7 @@
     <style name="single_marquee">
         <item name="android:singleLine">true</item>
         <item name="android:ellipsize">marquee</item>
-        <item name="android:marqueeRepeatLimit">marquee_forever</item>
+        <item name="android:marqueeRepeatLimit">3</item>
     </style>
 
     <style name="BaseDialog" parent="Theme.AppCompat.Light.Dialog.Alert">

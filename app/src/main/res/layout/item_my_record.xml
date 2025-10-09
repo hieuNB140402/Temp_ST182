@@ -70,6 +70,7 @@
                 android:orientation="vertical">
 
                 <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/imvPlay"
                     android:layout_width="28dp"
                     android:layout_height="28dp"
                     android:src="@drawable/imv_play_my_record" />
@@ -93,6 +94,7 @@
                 android:orientation="vertical">
 
                 <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/imvReverse"
                     android:layout_width="28dp"
                     android:layout_height="28dp"
                     android:src="@drawable/imv_reverse_my_record" />

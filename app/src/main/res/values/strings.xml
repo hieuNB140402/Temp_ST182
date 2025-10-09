@@ -67,6 +67,14 @@
     <string name="rename">Rename</string>
     <string name="play">Play</string>
     <string name="reverse">Reverse</string>
+    <string name="my_record">My Record</string>
+    <string name="no_record_here">No Record Here</string>
+    <string name="download_success">Download Success</string>
+    <string name="are_you_sure_want_to_delete_this_record">Are you sure want to delete this record?</string>
+    <string name="save">Save</string>
+    <string name="file_name_cannot_be_blank">File name cannot be blank</string>
+    <string name="rename_successful">Rename successful</string>
+    <string name="rename_failed">Rename failed</string>
 
 
 </resources>

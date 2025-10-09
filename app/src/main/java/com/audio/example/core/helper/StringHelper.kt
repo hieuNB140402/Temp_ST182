@@ -1,13 +1,19 @@
 package com.audio.example.core.helper
 
 import android.content.Context
+import android.graphics.Color
+import android.graphics.LinearGradient
+import android.graphics.Shader
 import android.text.SpannableString
 import android.text.style.ForegroundColorSpan
+import android.view.ViewTreeObserver
+import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.content.res.ResourcesCompat
 import com.audio.example.core.custom.text.CustomTypefaceSpan
 import java.text.DecimalFormat
 import java.text.NumberFormat
 import java.util.Locale
+import androidx.core.graphics.toColorInt
 
 object StringHelper {
     fun generateRandomImageFileName(): String {
@@ -70,5 +76,23 @@ object StringHelper {
         val minutes = totalSeconds / 60
         val seconds = totalSeconds % 60
         return String.format("%02d:%02d", minutes, seconds)
+    }
+    fun changeGradientText(textView: AppCompatTextView) {
+        textView.viewTreeObserver.addOnGlobalLayoutListener(object :
+            ViewTreeObserver.OnGlobalLayoutListener {
+            override fun onGlobalLayout() {
+                if (textView.width > 0 && textView.height > 0) {
+                    val textShader: Shader = LinearGradient(
+                        0f, 0f, 0f, textView.textSize.toFloat(),
+                        intArrayOf(
+                            "#51C7FF".toColorInt(),
+                            "#A6E2FF".toColorInt()
+                        ), floatArrayOf(0.25f, 1f), Shader.TileMode.CLAMP
+                    )
+                    textView.paint.setShader(textShader)
+                }
+                textView.viewTreeObserver.removeOnGlobalLayoutListener(this)
+            }
+        })
     }
 }
