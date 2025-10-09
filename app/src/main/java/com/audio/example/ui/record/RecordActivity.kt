@@ -21,13 +21,14 @@ import com.audio.example.core.extensions.visible
 import com.audio.example.core.utils.key.PermissionKey
 import com.audio.example.core.utils.key.RequestKey
 import com.audio.example.databinding.ActivityRecordBinding
+import com.audio.example.dialog.ConfirmDialog
 import com.audio.example.ui.permission.PermissionViewModel
 import kotlin.getValue
 
 class RecordActivity : BaseActivity<ActivityRecordBinding>() {
     private val permissionViewModel: PermissionViewModel by viewModels()
 
-    private var settingsDialog: AlertDialog? = null
+    private var settingsDialog: ConfirmDialog? = null
 
     override fun setViewBinding(): ActivityRecordBinding {
         return ActivityRecordBinding.inflate(LayoutInflater.from(this))
@@ -55,8 +56,9 @@ class RecordActivity : BaseActivity<ActivityRecordBinding>() {
     private fun checkRecordAudioPermission() {
         if (!checkPermissions(permissionViewModel.getRecordAudioPermissions())) {
             if (permissionViewModel.needGoToSettings(sharePreference, PermissionKey.RECORD_AUDIO_KEY)) {
-                goToSettings(settingsDialog = { dialog ->
-                    settingsDialog = dialog as AlertDialog?
+                goToSettings(
+                    settingsDialog = { dialog ->
+                    settingsDialog = dialog
                 }, onCancelClick = {
                     finish()
                 })
@@ -81,12 +83,12 @@ class RecordActivity : BaseActivity<ActivityRecordBinding>() {
 
     override fun onRestart() {
         super.onRestart()
-//        settingsDialog?.let {
-//            if (it.isShowing) {
-//                it.dismiss()
-//                hideNavigation(true)
-//            }
-//        }
+        settingsDialog?.let {
+            if (it.isShowing) {
+                it.dismiss()
+                hideNavigation(true)
+            }
+        }
         checkRecordAudioPermission()
     }
 }

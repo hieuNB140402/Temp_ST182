@@ -35,10 +35,18 @@ class PermissionViewModel : ViewModel() {
     }
 
     fun needGoToSettings(sharePrefer: SharePreferenceHelper, permission: String): Boolean {
-        return when(permission){
-            PermissionKey.STORAGE_KEY -> {sharePrefer.getStoragePermission() >= 2 && !_storageGranted.value}
-            PermissionKey.NOTIFICATION_KEY -> {sharePrefer.getStoragePermission() >= 2 && !_notificationGranted.value}
-            else -> {sharePrefer.getStoragePermission() >= 2 && !_recordAudioGranted.value}
+        return when (permission) {
+            PermissionKey.STORAGE_KEY -> {
+                sharePrefer.getStoragePermission() >= 2 && !_storageGranted.value
+            }
+
+            PermissionKey.NOTIFICATION_KEY -> {
+                sharePrefer.getStoragePermission() >= 2 && !_notificationGranted.value
+            }
+
+            else -> {
+                sharePrefer.getRecordAudioPermission() >= 2 && !_recordAudioGranted.value
+            }
         }
     }
 

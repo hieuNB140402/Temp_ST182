@@ -5,6 +5,7 @@ import com.audio.example.R
 import com.audio.example.core.base.BaseDialog
 import com.audio.example.core.extensions.setOnSingleClick
 import com.audio.example.core.extensions.setOnSingleClickWithSound
+import com.audio.example.core.helper.StringHelper.changeGradientText
 import com.audio.example.databinding.DialogConfirmBinding
 import kotlin.apply
 
@@ -26,10 +27,10 @@ class ConfirmDialog(
 
     override fun initAction() {
         binding.apply {
-            btnNo.setOnSingleClickWithSound {
+            tvCancel.setOnSingleClickWithSound {
                 onNoClick.invoke()
             }
-            btnYes.setOnSingleClickWithSound {
+            tvYes.setOnSingleClickWithSound {
                 onYesClick.invoke()
             }
             flOutSide.setOnSingleClick {
@@ -44,6 +45,7 @@ class ConfirmDialog(
 
     private fun initText() {
         binding.apply {
+            changeGradientText(binding.tvCancel)
             tvTitle.text = context.getString(title)
             tvDescription.text = context.getString(description)
         }
