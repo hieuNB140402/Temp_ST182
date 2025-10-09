@@ -4,7 +4,10 @@ import android.content.Context
 import android.content.SharedPreferences
 import com.audio.example.core.utils.key.PermissionKey.CAMERA_KEY
 import com.audio.example.core.utils.key.PermissionKey.NOTIFICATION_KEY
+import com.audio.example.core.utils.key.PermissionKey.PITCH_SHIFT_KEY
 import com.audio.example.core.utils.key.PermissionKey.QUANTITY_UNZIPPED
+import com.audio.example.core.utils.key.PermissionKey.RECORD_AUDIO_KEY
+import com.audio.example.core.utils.key.PermissionKey.SPEED_KEY
 import com.audio.example.core.utils.key.PermissionKey.STORAGE_KEY
 import com.audio.example.core.utils.key.SharePreferenceKey
 import com.audio.example.core.utils.key.SharePreferenceKey.COUNT_BACK_KEY
@@ -16,7 +19,8 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 
 class SharePreferenceHelper(val context: Context) {
-    val preferences: SharedPreferences = context.getSharedPreferences(SharePreferenceKey.SHARE_KEY, Context.MODE_PRIVATE)
+    val preferences: SharedPreferences =
+        context.getSharedPreferences(SharePreferenceKey.SHARE_KEY, Context.MODE_PRIVATE)
 
     // Language
     fun getPreLanguage(): String {
@@ -106,10 +110,21 @@ class SharePreferenceHelper(val context: Context) {
         editor.apply()
     }
 
+    // Record Audio Permission
+    fun getRecordAudioPermission(): Int {
+        return preferences.getInt(RECORD_AUDIO_KEY, 0)
+    }
+
+    fun setRecordAudioPermission(count: Int) {
+        val editor = preferences.edit()
+        editor.putInt(RECORD_AUDIO_KEY, count)
+        editor.apply()
+    }
+
     // Data asset
     fun getQuantityUnzipped(): MutableSet<Int> {
         val json = preferences.getString(QUANTITY_UNZIPPED, "[]")
-        val type = object : TypeToken<MutableSet<Int>>(){}.type
+        val type = object : TypeToken<MutableSet<Int>>() {}.type
         return Gson().fromJson(json, type)
     }
 
@@ -119,4 +134,27 @@ class SharePreferenceHelper(val context: Context) {
         editor.putString(QUANTITY_UNZIPPED, json)
         editor.apply()
     }
+
+    // Speed
+    fun getSpeedAudio(): Float {
+        return preferences.getFloat(SPEED_KEY, 1f)
+    }
+
+    fun setSpeedAudio(speed: Float) {
+        val editor = preferences.edit()
+        editor.putFloat(SPEED_KEY, speed)
+        editor.apply()
+    }
+
+    // pitch shift
+    fun getPitchShiftAudio(): Float {
+        return preferences.getFloat(PITCH_SHIFT_KEY, 0f)
+    }
+
+    fun getPitchShiftAudio(pitchShift: Float) {
+        val editor = preferences.edit()
+        editor.putFloat(PITCH_SHIFT_KEY, pitchShift)
+        editor.apply()
+    }
+
 }

@@ -5,5 +5,7 @@ object PermissionKey {
     const val NOTIFICATION_KEY = "NOTIFICATION_KEY"
     const val CAMERA_KEY = "CAMERA_KEY"
     const val RECORD_AUDIO_KEY = "RECORD_AUDIO_KEY"
+    const val SPEED_KEY = "SPEED_KEY"
+    const val PITCH_SHIFT_KEY = "PITCH_SHIFT_KEY"
     const val QUANTITY_UNZIPPED = "QUANTITY_UNZIPPED"
 }
